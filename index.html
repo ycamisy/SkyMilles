@@ -25,11 +25,6 @@
             padding: 10px 40px;
         }
 
-        .Cabeçalho {
-            margin-right: auto;
-        }
-        
-
         #Logo {
             height: 80px;
             margin-right: 15px;
@@ -40,7 +35,6 @@
             color: #fff;
             text-decoration: none;
             margin-right: auto;
-            margin-left: 15px;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
 
@@ -64,21 +58,6 @@
             border-color: #fff;
         }
 
-        .buttonMenu {
-            color: white;
-            background-color: transparent;
-            border: none;
-            font-size: 18px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .lupa {
-            height: 24px; 
-            width: auto;
-            cursor: pointer;
-        }
-
         /* Barra de navegação */
         nav {
             display: flex;
@@ -100,7 +79,7 @@
 
         /* Botão de tema */
         #toggle-theme {
-            background-color: #035f83;
+            background-color: #f8c537;
             color: #000;
             border: none;
             border-radius: 20px;
@@ -120,7 +99,7 @@
         .banner {
             text-align: center;
             padding: 30px 10px;
-            background: #035f83;
+            background: #27738f;
             border-radius: 10px;
             margin: 20px;
             color: #fff;
@@ -132,11 +111,31 @@
             font-size: 26px;
         }
 
-        
+        /* Carrossel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
 
         .carousel {
             display: flex;
             transition: transform 0.5s ease;
+        }
+
+        .lupa {
+            height: 24px; 
+            width: auto;
+            cursor: pointer;
+        }
+
+        .perfil {
+            height: 60px;
+            margin-right: 15px;
+            width: auto;
+            border-radius: 100%;
         }
 
         .card {
@@ -146,17 +145,13 @@
             overflow: hidden;
             margin: 0 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+
         }
 
         .card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
         }
 
         .btn {
@@ -215,6 +210,79 @@
             color: #f8c537;
             border: 2px solid #f8c537;
         }
+
+        /* Destino */
+        .destino {
+            position: relative;
+            width: 250px;
+            overflow: hidden;
+            border-radius: 20px;
+           /* display:none;*/
+        }
+
+        .destino img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .destino:hover img {
+            transform: scale(1.1);
+        }
+
+        .destino .info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(255, 255, 255);
+            color: #000000;
+            opacity: 0;
+            transform: translateX(-100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .pais {
+            color:#d7c48c;
+        }
+
+        .destino:hover .info {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ButtonPassagem {
+            border-radius: 12px;
+            border:#4d9fb8;
+            background-color: #4d9fd8;
+            color: #ffffff;
+        }
+
+        .ButtonMenu {
+            color: white;
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .destino .info {
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 0.4s ease;
+        }
+
+        .destino.ativo .info {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 
@@ -227,33 +295,83 @@
         <!-- Barra de pesquisa e botão -->
         <nav>
             <img class="lupa" src="https://i.postimg.cc/nV62FgMg/icone-loupe-jaune.png" alt="lupa">
-            <button class="buttonMenu">Destaques</button>
-            <button class="buttonMenu">Pacotes</button>
-            <button class="buttonMenu">Sobre Nós</button>
-            <button class="buttonMenu">Planos</button>
-            <button id="toggle-theme">🌙</button>
-            <ul id="ListaP">
-                <li class="li" src="https://i.postimg.cc/qMvvdyYp/download-3.jpg"><i class="user-icon"></i></li>
-                <img id="Logo" src="https://i.postimg.cc/13Wqv7Vx/menu.png" alt="Logo SkyMilles">
-            </ul>
+            <button class="ButtonMenu">Destaques</button>
+            <button class="ButtonMenu">Pacotes</button>
+            <button class="ButtonMenu">Sobre Nós</button>
+            <button class="ButtonMenu">Planos</button>
+            <img class="perfil" src="https://i.postimg.cc/qMvvdyYp/download-3.jpg" alt="Sua Foto">
+
         </nav>
     </header>
 
     <!-- Banner com Carrossel -->
     <section class="banner">
         <h1>Descubra aqui o seu próximo destino!</h1>
+        <div class="carousel-container">
             <div class="carousel">
-                <div class="card" data-name="paris"><img src="https://i.postimg.cc/3wcMM0P2/download.jpg" alt="Paris"></div>
-                <div class="card" data-name="santorini"><img src="https://i.postimg.cc/xd4rrNWM/download-1.jpg" alt="Santorini"></div>
-                <div class="card" data-name="bruxelas"><img src="https://i.postimg.cc/d0xMMZzy/download-2.jpg" alt="Bruxelas"></div>
-                <div class="card" data-name="egito"><img src="https://i.postimg.cc/PqRGGvBD/images.jpg" alt="Egito"></div>
-                <div class="card" data-name="japao"><img src="https://i.postimg.cc/xdCrF3Fv/images-1.jpg" alt="Japão"></div>
+                <div class="card" data-name="paris"><img src="https://i.postimg.cc/3wcMM0P2/download.jpg" alt="Paris">
+                </div>
+                <div class="destino" >
+                    <img src="paris.jpg" alt="Paris">
+                    <div class="info">
+                        <h2 class="pais">Paris</h2>
+                        <p>Conheça a Torre Eiffel de perto.</p>
+                        <button class="ButtonPassagem">Ver Passagens</button>
+                    </div>
+                </div>
+
+                <div class="card" data-name="santorini"><img src="https://i.postimg.cc/xd4rrNWM/download-1.jpg"
+                        alt="Santorini"></div>
+                <div class="destino">
+                    <img src="paris.jpg" alt="Paris">
+                    <div class="info">
+                        <h2 class="pais">Roma</h2>
+                        <p>Conheça a Torre Eiffel de perto.</p>
+                        <button class="ButtonPassagem">Ver Passagens</button>
+                    </div>
+                </div>
+
+                <div class="card" data-name="Bruxelas"><img src="https://i.postimg.cc/d0xMMZzy/download-2.jpg"
+                        alt="Bruxelas"></div>
+                <div class="destino">
+                    <img src="paris.jpg" alt="Paris">
+                    <div class="info">
+                        <h2 class="pais">Bruxelas</h2>
+                        <p>Conheça a Torre Eiffel de perto.</p>
+                        <button class="ButtonPassagem">Ver Passagens</button>
+                    </div>
+                </div>
+
+                <div class="card" data-name="Egito"><img src="https://i.postimg.cc/PqRGGvBD/images.jpg" alt="Egito">
+                </div>
+                <div class="destino">
+                    <img src="paris.jpg" alt="Paris">
+                    <div class="info">
+                        <h2 class="pais">Egito</h2>
+                        <p>Conheça a Torre Eiffel de perto.</p>
+                        <button class="ButtonPassagem">Ver Passagens</button>
+                    </div>
+                </div>
+
+                <div class="card" data-name="Japão"><img src="https://i.postimg.cc/xdCrF3Fv/images-1.jpg" alt="Japão">
+                </div>
+                <div class="destino">
+                    <img src="paris.jpg" alt="Paris">
+                    <div class="info">
+                        <h2 class="pais">Japão</h2>
+                        <p>Conheça a Torre Eiffel de perto.</p>
+                        <button class="ButtonPassagem">Ver Passagens</button>
+                    </div>
+                </div>
+
             </div>
+        </div>
     </section>
 
     <script>
         const InputProcura = document.getElementById("search");
         const Paineis = document.querySelectorAll(".card");
+        const carousel = document.querySelector(".carousel");
         const next = document.querySelector(".next");
         const prev = document.querySelector(".prev");
         const toggleBtn = document.getElementById("toggle-theme");
@@ -270,6 +388,12 @@
                 card.style.display = name.includes(valor) ? "block" : "none";
             });
         });
+
+        // Atualiza posição do carrossel
+        function updateCarousel() {
+            const offset = -index * 200;
+            carousel.style.transform = `translateX(${offset}px)`;
+        }
 
         // Botões de navegação
         next.addEventListener("click", () => {
@@ -292,8 +416,47 @@
         toggleBtn.addEventListener("click", () => {
             document.body.classList.toggle("dark");
             const darkMode = document.body.classList.contains("dark");
-            toggleBtn.textContent = darkMode ? "☀️" : "🌙";
+            toggleBtn.textContent = darkMode ? "☀️ Tema" : "🌙 Tema";
         });
+        const destinos = document.getElementsByClassName('.destino');
+        /*
+              destinos.forEach(destino => {
+                  destino.addEventListener('mouseenter', () => {
+                      destinos.forEach(d => d.classList.remove('ativo'));
+                      destino.classList.add('ativo');
+                  });
+                  destino.addEventListener('mouseleave', () => {
+                      destino.classList.remove('ativo');
+                  });
+              });*/
+
+        const card = document.getElementById('card');
+
+        card.addEventListener('mouseenter', () => {
+            destinos.style.display = 'block';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            destinos.style.display = 'none';
+        });
+
+/*
+        botao.addEventListener("click", function () {
+
+        if (destinos.style.display == "none") {
+
+          destinos.style.display = "inline";
+
+        }
+        else{
+
+            destinos.style.display = "none"
+        }
+    }
+
+   
+);*/
+
     </script>
 </body>
 
